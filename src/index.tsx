@@ -1,18 +1,39 @@
-import { useEffect, useRef, useState } from "react";
+import {
+  cloneElement,
+  isValidElement,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
-export function Animate({ children }: { children: React.ReactNode }) {
+export function Motion({
+  children,
+  className,
+  stagger = 0,
+  threshold = 0.3,
+}: {
+  children: React.ReactElement<
+    {
+      className?: string;
+      style?: React.CSSProperties;
+    } & React.RefAttributes<HTMLElement>
+  >;
+  className?: string;
+  stagger?: number;
+  threshold?: number;
+}) {
   const ref = useRef<HTMLDivElement | null>(null);
   const [inView, setInView] = useState(false);
 
   useEffect(() => {
-    if (!ref.current) return;
+    if (!ref.current || inView) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         setInView(entry.isIntersecting);
       },
       {
-        threshold: 0.3,
+        threshold,
       },
     );
 
@@ -21,5 +42,14 @@ export function Animate({ children }: { children: React.ReactNode }) {
     return () => observer.disconnect();
   }, []);
 
-  return inView ? children : <div ref={ref} />;
+  if (!isValidElement(children)) return null;
+
+  return cloneElement(children, {
+    ref,
+    className:
+      children.props.className + (inView && className ? ` ${className}` : ""),
+    style: {
+      transitionDelay: `${stagger}ms`,
+    },
+  });
 }
