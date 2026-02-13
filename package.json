@@ -1,6 +1,6 @@
 {
   "name": "tailwind-motlib",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A motion and stagger library for tailwind",
   "type": "module",
   "sideEffects": false,
