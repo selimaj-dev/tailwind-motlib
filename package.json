@@ -1,0 +1,32 @@
+{
+  "name": "tailwind-motlib",
+  "version": "1.0.0",
+  "description": "A motion and stagger library for tailwind",
+  "type": "module",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/esm/index.d.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selimaj-dev/tailwind-motlib.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/selimaj-dev/tailwind-motlib/issues"
+  },
+  "homepage": "https://github.com/selimaj-dev/tailwind-motlib#readme",
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "typescript": "^5.9.3"
+  }
+}
