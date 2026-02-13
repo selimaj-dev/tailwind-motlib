@@ -1,6 +1,6 @@
 {
   "name": "tailwind-motlib",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A motion and stagger library for tailwind",
   "type": "module",
   "sideEffects": false,
@@ -14,8 +14,9 @@
     }
   },
   "scripts": {
+    "clean": "rm -rf dist",
     "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
-    "prepublish": "rm -rf dist && npm run build"
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "repository": {
     "type": "git",
